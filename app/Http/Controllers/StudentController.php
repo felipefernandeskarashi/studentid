@@ -38,7 +38,26 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        Student::create($request->all());
+
+
+        $path = $request->photo->store('images');
+        
+        Student::create([
+            'name' => $request->name,
+            'rg' => $request->rg, 
+            'voter_id' => $request->voter_id,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'course' => $request->course,
+            'institution' => $request->institution,
+            'semester' => $request->semester,
+            'city' => $request->city,
+            'period' => implode('|', $request->period),
+            'days' => implode('|', $request->days),
+            'study_begin' => $request->study_begin,
+            'study_ends' => $request->study_ends,
+            'photo' => $path,
+        ]);
 
         return redirect()->action('StudentController@index');
     }
@@ -51,7 +70,8 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+
+        return view('student.show')->with('s', $student);
     }
 
     /**
@@ -85,6 +105,10 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        
+        $student->delete();
+
+        return redirect()->action('StudentController@index');
+
     }
 }

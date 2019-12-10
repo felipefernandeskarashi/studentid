@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="card-body">
-                <form action="{{ action('StudentController@store') }}" method="POST">
+                <form action="{{ action('StudentController@store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                     <div class="form-group">
@@ -51,18 +51,18 @@
                     </div>
                     <div class="form-group">
                         <label><b>Período que Estuda: </b></label><br>
-                        Manhã: <input type="checkbox" name="period" value="Manhã">&nbsp;&nbsp
-                        Tarde: <input type="checkbox" name="period" value="Tarde">&nbsp;&nbsp
-                        Noite: <input type="checkbox" name="period" value="Noite">
+                        Manhã: <input type="checkbox" name="period[]" value="Manhã">&nbsp;&nbsp
+                        Tarde: <input type="checkbox" name="period[]" value="Tarde">&nbsp;&nbsp
+                        Noite: <input type="checkbox" name="period[]" value="Noite">
                     </div>
                     <div class="form-group">
                         <label><b>Dias da semana que estuda: </b></label><br>
-                        Todos os dias: <input type="checkbox" name="days" value="Todos os dias">&nbsp;&nbsp
-                        Segunda-Feira: <input type="checkbox" name="days" value="Segunda-Feira">&nbsp;&nbsp
-                        Terça-Feira: <input type="checkbox" name="days" value="Terça-Feira">&nbsp;&nbsp
-                        Quarta-Feira: <input type="checkbox" name="days" value="Quarta-Feira">&nbsp;&nbsp
-                        Quinta-Feira: <input type="checkbox" name="days" value="Quinta-Feira">&nbsp;&nbsp
-                        Sexta-Feira: <input type="checkbox" name="days" value="Sexta-Feira">&nbsp;&nbsp
+                        Todos os dias: <input type="checkbox" name="days[]" value="Todos os dias">&nbsp;&nbsp
+                        Segunda-Feira: <input type="checkbox" name="days[]" value="Segunda-Feira">&nbsp;&nbsp
+                        Terça-Feira: <input type="checkbox" name="days[]" value="Terça-Feira">&nbsp;&nbsp
+                        Quarta-Feira: <input type="checkbox" name="days[]" value="Quarta-Feira">&nbsp;&nbsp
+                        Quinta-Feira: <input type="checkbox" name="days[]" value="Quinta-Feira">&nbsp;&nbsp
+                        Sexta-Feira: <input type="checkbox" name="days[]" value="Sexta-Feira">&nbsp;&nbsp
                     </div>
                     <div class="form-group">
                         <label><b>Inicio do curso</b></label>
@@ -74,8 +74,7 @@
                     </div>
                     <div class="form-group">
                         <label><b>Foto</b></label>
-                        <input type="file" name="photo">
-                        
+                        <input type="file" name="photo" class="input-group date">
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-block">Adicionar</button>

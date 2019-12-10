@@ -1,7 +1,7 @@
 @extends('layouts/app')
 
 @section('content')
-<div class="container">
+<div class="container" style="float: right;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="float: right;">
@@ -32,9 +32,9 @@
 							<td> {{$s->phone}} </td>
 							<td> {{$s->study_begin}} </td>
 							<td> {{$s->days}} </td>
-							<td><a href="#"><i class="fas fa-search"></i></a></td>
-							<td><a href="#"><i class="fas fa-trash"></i></a></td>
-							<td><a href="#"><i class="fas fa-trash"></i></a></td>
+							<td><a href="{{ action('StudentController@show', $s->id) }}"><i class="fas fa-search"></i></a></td>
+							<td><a href="{{ action('StudentController@destroy', $s->id) }}"  onClick="remove()"><i class="fas fa-trash"></i></a></td>
+							<td><a href="#"><i class="fas fa-id-card"></i></a></td>
 						</tr>
 					    @endforeach
 					</table>
@@ -46,3 +46,11 @@
 </div>
 
 @stop
+
+<script type="text/javascript">
+	
+function remove(){
+	 alert("Estudante excluído com sucesso!");
+}
+
+</script>
