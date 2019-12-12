@@ -52,8 +52,8 @@ class StudentController extends Controller
             'institution' => $request->institution,
             'semester' => $request->semester,
             'city' => $request->city,
-            'period' => implode('|', $request->period),
-            'days' => implode('|', $request->days),
+            'period' => implode(' ', $request->period),
+            'days' => implode(' ', $request->days),
             'study_begin' => $request->study_begin,
             'study_ends' => $request->study_ends,
             'photo' => $path,
@@ -81,8 +81,9 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Student $student)
-    {
-        //
+    {     
+
+        return view('student.edit')->with('s', $student);
     }
 
     /**
@@ -93,8 +94,31 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Student $student)
-    {
-        //
+    {        
+
+        if($request->newphoto != null)
+            $path = $request->newphoto->store('images');
+        else
+            $path = $student->photo;
+
+        $student->update([
+            'name' => $request->name,
+            'rg' => $request->rg, 
+            'voter_id' => $request->voter_id,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'course' => $request->course,
+            'institution' => $request->institution,
+            'semester' => $request->semester,
+            'city' => $request->city,
+            'period' => implode(' ', $request->period),
+            'days' => implode(' ', $request->days),
+            'study_begin' => $request->study_begin,
+            'study_ends' => $request->study_ends,
+            'photo' => $path,
+        ]);
+
+        return view('student.show')->with('s', $student);
     }
 
     /**

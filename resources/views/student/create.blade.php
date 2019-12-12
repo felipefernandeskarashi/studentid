@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ action('StudentController@index') }}">Estudantes</a>
+                    <a href="{{ action('StudentController@index') }}"><i class="far fa-list-alt" title="Lista"></i></a>
                 </div>
 
                 <div class="card-body">

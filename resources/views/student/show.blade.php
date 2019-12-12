@@ -6,7 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                	<a href="{{ action('StudentController@index') }}">Estudantes</a>                	
+                	<a href="{{ action('StudentController@index') }}"><i class="far fa-list-alt" title="Lista"></i></a> &nbsp;&nbsp;&nbsp  
+                	<a href="{{ action('StudentController@edit', $s->id) }}"><i class="fas fa-pencil-alt" title="Editar"></i> </a>             	
             	</div>
 
                 <div class="card-body">                  	 
