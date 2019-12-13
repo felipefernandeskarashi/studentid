@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 
 class StudentController extends Controller
-{
+{   
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +16,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::paginate(15);
+        $students = Student::paginate(15);         
 
         return view('student.list')->with('students', $students);
     }
@@ -59,7 +60,7 @@ class StudentController extends Controller
             'photo' => $path,
         ]);
 
-        return redirect()->action('StudentController@index');
+        return redirect()->action('StudentController@index')->withInput($request->only('name'));
     }
 
     /**
@@ -134,5 +135,36 @@ class StudentController extends Controller
 
         return redirect()->action('StudentController@index');
 
+    }
+
+
+    /**
+     * Search the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        
+        $search = $request->search;
+
+        $students = Student::where('name', 'LIKE', '%' . $search . '%')
+                            ->orWhere('name', 'LIKE', '%' . $search . '%')
+                            ->orWhere('rg', 'LIKE', '%' . $search . '%')
+                            ->orWhere('voter_id', 'LIKE', '%' . $search . '%')
+                            ->orWhere('phone', 'LIKE', '%' . $search . '%')
+                            ->orWhere('address', 'LIKE', '%' . $search . '%')
+                            ->orWhere('course', 'LIKE', '%' . $search . '%')
+                            ->orWhere('institution', 'LIKE', '%' . $search . '%')
+                            ->orWhere('semester', 'LIKE', '%' . $search . '%')
+                            ->orWhere('city', 'LIKE', '%' . $search . '%')
+                            ->orWhere('period', 'LIKE', '%' . $search . '%')
+                            ->orWhere('days', 'LIKE', '%' . $search . '%')
+                            ->orWhere('study_begin', 'LIKE', '%' . $search . '%')
+                            ->orWhere('study_ends', 'LIKE', '%' . $search . '%')
+                            ->paginate(15);
+
+        return view('student.list')->with('students', $students);                            
     }
 }
