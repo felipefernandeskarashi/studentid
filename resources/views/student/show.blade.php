@@ -25,8 +25,8 @@
 		              		<p class="mb-0"><u>Cidade:</u> {{ $s->city }}</p>
 		              		<p class="mb-0"><u>Período:</u> {{ $s->period }}</p>
 		              		<p class="mb-0"><u>Dias:</u> {{ $s->days }}</p>
-		              		<p class="mb-0"><u>Data de inicio:</u> {{ $s->study_begin }}</p>
-		              		<p class="mb-0"><u>Data do fim:</u> {{ $s->study_ends }}</p>
+		              		<p class="mb-0"><u>Data de inicio:</u> {{ $s->study_begin->format('d/m/Y') }}</p>
+		              		<p class="mb-0"><u>Data do fim:</u> {{ $s->study_ends->format('d/m/Y') }}</p>
               			</div>                 		
               		</div>              		         
                     

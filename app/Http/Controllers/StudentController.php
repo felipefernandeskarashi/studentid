@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class StudentController extends Controller
@@ -40,6 +41,8 @@ class StudentController extends Controller
     public function store(Request $request)
     {
 
+        $this->validateData($request);
+        $this->validatePhoto($request);   
 
         $path = $request->photo->store('images');
         
@@ -55,8 +58,8 @@ class StudentController extends Controller
             'city' => $request->city,
             'period' => implode(' ', $request->period),
             'days' => implode(' ', $request->days),
-            'study_begin' => $request->study_begin,
-            'study_ends' => $request->study_ends,
+            'study_begin' => date("Y-m-d", strtotime($request->study_begin)),
+            'study_ends' => date("Y-m-d", strtotime($request->study_ends)),
             'photo' => $path,
         ]);
 
@@ -96,11 +99,16 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {        
-
-        if($request->newphoto != null)
-            $path = $request->newphoto->store('images');
-        else
+        
+        if($request->photo != null){
+            $this->validateData($request);
+            $this->validatePhoto($request);
+            $path = $request->photo->store('images');
+        }
+        else{
+            $this->validateData($request);
             $path = $student->photo;
+        }
 
         $student->update([
             'name' => $request->name,
@@ -114,8 +122,8 @@ class StudentController extends Controller
             'city' => $request->city,
             'period' => implode(' ', $request->period),
             'days' => implode(' ', $request->days),
-            'study_begin' => $request->study_begin,
-            'study_ends' => $request->study_ends,
+            'study_begin' => date("Y-m-d", strtotime($request->study_begin)),
+            'study_ends' => date("Y-m-d", strtotime($request->study_ends)),
             'photo' => $path,
         ]);
 
@@ -130,7 +138,8 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        
+
+        Storage::delete($student->photo);
         $student->delete();
 
         return redirect()->action('StudentController@index');
@@ -150,7 +159,6 @@ class StudentController extends Controller
         $search = $request->search;
 
         $students = Student::where('name', 'LIKE', '%' . $search . '%')
-                            ->orWhere('name', 'LIKE', '%' . $search . '%')
                             ->orWhere('rg', 'LIKE', '%' . $search . '%')
                             ->orWhere('voter_id', 'LIKE', '%' . $search . '%')
                             ->orWhere('phone', 'LIKE', '%' . $search . '%')
@@ -167,4 +175,44 @@ class StudentController extends Controller
 
         return view('student.list')->with('students', $students);                            
     }
+
+
+    /**
+     * Validate the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Request  $data
+     */
+
+    protected function validateData(Request $request){
+
+        $data = $request->validate([
+            'name' => 'required|max:100',
+            'rg' => 'required|max:30',
+            'voter_id' => 'required|max:30',
+            'phone' => 'required|celular_com_ddd|max:30',
+            'address' => 'required|max:150',
+            'course' => 'required|max:150',
+            'institution' => 'required|max:150',
+            'semester' => 'required|numeric',
+            'city' => 'required|max:150',
+            'period' => 'required|max:30',
+            'days' => 'required|max:100',
+            'study_begin' => 'required|data',
+            'study_ends' => 'required|data',
+        ]);
+
+        return $data;
+    }
+
+    protected function validatePhoto(Request $request){
+
+        $data = $request->validate([
+            'photo' => 'required|image|max:5000',
+        ]);
+
+        return $data;
+    }
+
+
 }

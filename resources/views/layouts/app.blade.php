@@ -10,7 +10,14 @@
     <title>{{ config('app.name', 'Lavínia') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script src="{!!url('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js')!!}"></script>
+    <script src="{!!url('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js')!!}"></script>
+    <script src="{!!url('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js')!!}"></script>
+    <script src="{!!url('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js')!!}"></script>
+    <script type="text/javascript" src="{{ asset('js/inputmask.js') }}"></script>
+
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +25,7 @@
     <script src="https://kit.fontawesome.com/7bd521465d.js" crossorigin="anonymous"></script>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -54,7 +62,6 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

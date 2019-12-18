@@ -32,7 +32,7 @@
 						<td> {{$s->course}} </td>
 						<td> {{$s->rg}} </td>
 						<td> {{$s->phone}} </td>
-						<td> {{$s->study_begin}} </td>
+						<td> {{$s->study_begin->format('d/m/Y')}} </td>
 						<td> {{$s->days}} </td>
 						<td><a href="{{ action('StudentController@show', $s->id) }}"><i class="fas fa-search"></i></a></td>
 						<td><a href="{{ action('StudentController@destroy', $s->id) }}"  onClick="remove()"><i class="fas fa-trash"></i></a></td>

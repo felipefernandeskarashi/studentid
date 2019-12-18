@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -17,47 +18,57 @@
                     <div class="form-group">
                         <label><b>Nome</b></label>
                         <input type="" name="name" class="form-control" value="{{ $s->name ?? old('name') }}">
+                        @error('name') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>RG</b></label>
-                        <input type="" name="rg" class="form-control" value="{{ $s->rg ?? old('rg') }}">
+                        <input type="" name="rg" class="form-control" value="{{ $s->rg ?? old('rg') }}" id="rg">
+                        @error('rg') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>Titulo de Eleitor</b></label>
                         <input type="" name="voter_id" class="form-control" value="{{ $s->voter_id ?? old('voter_id') }}">
+                        @error('voter_id') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>Celular</b></label>
-                        <input type="" name="phone" class="form-control" value="{{ $s->phone ?? $s->name ?? old('phone') }}">
+                        <input type="" name="phone" class="form-control" value="{{ $s->phone ?? $s->name ?? old('phone') }}" id="phone">
+                        @error('phone') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>Endereço</b></label>
                         <input type="" name="address" class="form-control" value="{{ $s->address ?? old('address') }}">
+                        @error('address') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>Curso</b></label>
                         <input type="" name="course" class="form-control" value="{{ $s->course ?? old('course') }}">
+                        @error('course') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>Instituição</b></label>
                         <input type="" name="institution" class="form-control" value="{{ $s->institution ?? old('institution') }}">
+                        @error('institution') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>Semestre</b></label>
                         <input type="number" name="semester" class="form-control" value="{{ $s->semester ?? old('semester') }}">
+                        @error('semester') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>Cidade que Estuda</b></label>
                         <input type="" name="city" class="form-control" value="{{ $s->city ?? old('city') }}">
+                        @error('city') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>Período que Estuda: </b></label><br>
-                            Manhã: <input type="checkbox" name="period[]" value="Manhã" 
-                            <?php if(strpos($s->period, 'Manhã') !== false) echo 'checked'; ?>>&nbsp;&nbsp
-                            Tarde: <input type="checkbox" name="period[]" value="Tarde" 
-                            <?php if(strpos($s->period, 'Tarde') !== false) echo 'checked'; ?>>&nbsp;&nbsp
-                            Noite: <input type="checkbox" name="period[]" value="Noite" 
-                            <?php if(strpos($s->period, 'Noite') !== false) echo 'checked'; ?>>
+                        Manhã: <input type="checkbox" name="period[]" value="Manhã" 
+                        <?php if(strpos($s->period, 'Manhã') !== false) echo 'checked'; ?>>&nbsp;&nbsp
+                        Tarde: <input type="checkbox" name="period[]" value="Tarde" 
+                        <?php if(strpos($s->period, 'Tarde') !== false) echo 'checked'; ?>>&nbsp;&nbsp
+                        Noite: <input type="checkbox" name="period[]" value="Noite" 
+                        <?php if(strpos($s->period, 'Noite') !== false) echo 'checked'; ?>>
+                        @error('period') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>Dias da semana que estuda: </b></label><br>
@@ -73,19 +84,23 @@
                         <?php if(strpos($s->days, 'Quinta-Feira') !== false) echo 'checked'; ?>>&nbsp;&nbsp
                         Sexta-Feira: <input type="checkbox" name="days[]" value="Sexta-Feira"
                         <?php if(strpos($s->days, 'Sexta-Feira') !== false) echo 'checked'; ?>>&nbsp;&nbsp
+                        @error('days') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>Inicio do curso</b></label>
-                        <input type="date" name="study_begin" class="input-group date" value="{{ $s->study_begin ?? old('study_begin') }}">
+                        <input type="text" name="study_begin" class="input-group" value="{{ $s->study_begin->format('d/m/Y') ?? old('study_begin') }}" autocomplete="off" id="study_begin">
+                        @error('study_begin') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>Fim do curso</b></label>
-                        <input type="date" name="study_ends" class="input-group date" value="{{ $s->study_ends ?? old('study_ends') }}">
+                        <input type="text" name="study_ends" class="input-group" value="{{ $s->study_ends->format('d/m/Y') ?? old('study_ends') }}" autocomplete="off" id="study_ends">
+                        @error('study_ends') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label><b>Foto</b></label>
-                        <input type="file" name="newphoto" class="input-group date" >
-                        <input type="hidden" name="photo" value="{{ $s->photo }}" >
+                        <input type="file" name="photo" class="input-group" >
+                        <input type="hidden" name="oldphoto" value="{{ $s->photo }}" >
+                        @error('photo') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-block">Atualizar</button>
@@ -97,8 +112,4 @@
     </div>
 </div>
 @endsection
-
-
- 
-
 

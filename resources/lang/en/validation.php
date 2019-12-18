@@ -133,6 +133,60 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'name' => [
+            'required' =>'O campo nome é obrigatório.',
+            'max' => 'O campo nome esta muito grande.',
+        ],
+        'rg' => [
+            'required' =>'O campo RG é obrigatório.',
+            'max' => 'O campo RG esta muito grande.',
+        ],
+        'voter_id' => [
+            'required' =>'O campo título de eleitor é obrigatório.',
+            'max' => 'O campo título de eleitor esta muito grande.',
+        ],
+        'phone' => [
+            'required' => 'O campo celular é obrigatório.',
+            'celular_com_ddd' => 'Você informou o celular errado.',
+        ],
+        'address' => [
+            'required' => 'O campo endereço é obrigatório.', 
+            'max' => 'O campo endereço esta muito grande.',  
+        ],
+        'course' => [
+            'required' => 'O campo curso é obrigatório.',
+            'max' => 'O campo curso esta muito grande',
+        ],
+        'institution' => [
+            'required' => 'O campo instituição é obrigatório.',
+            'max' => 'O campo instituição esta muito grande',
+        ],
+        'semester' => [
+            'required' => 'O campo semestre é obrigatório.',
+        ],
+        'city' => [
+            'required' => 'O campo cidade é obrigatório.',
+            'max' => 'O campo cidade esta muito grande',
+        ],
+        'period' => [
+            'required' => 'O campo período é obrigatório.',
+            'max' => 'O campo período esta muito grande',
+        ],
+        'days' => [
+            'required' => 'O campo dias é obrigatório.',
+            'max' => 'O campo dias esta muito grande',
+        ],
+        'study_begin' => [
+            'required' => 'O campo inicio do curso é obrigatório.',
+        ],
+        'study_ends' => [
+            'required' => 'O campo fim do curso é obrigatório.',
+        ],
+        'photo' => [
+            'required' => 'O campo foto é obrigatório.',
+            'image' => 'O campo foto deve ter uma das seguintes extensões (jpeg, png, bmp, gif, svg, or webp)',
+            'max' => 'Tamanho máximo permitido é 5mb.'
+        ],
     ],
 
     /*
