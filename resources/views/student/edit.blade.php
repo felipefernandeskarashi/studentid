@@ -97,9 +97,10 @@
                         @error('study_ends') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
-                        <label><b>Foto</b></label>
-                        <input type="file" name="photo" class="input-group" >
+                        <label><b>Foto</b></label>                        
+                        <input type="file" name="photo" class="input-group" id="photo" style="color: transparent;" >
                         <input type="hidden" name="oldphoto" value="{{ $s->photo }}" >
+                        <p id="hide">Imagem: <?php echo $s->photo; ?></p>
                         @error('photo') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
 

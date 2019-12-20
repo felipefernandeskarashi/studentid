@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 
 class StudentController extends Controller
@@ -212,6 +213,33 @@ class StudentController extends Controller
         ]);
 
         return $data;
+    }
+
+
+        /**
+     * Search the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function report(Request $request)
+    {
+          
+
+        $cities = DB::table('students')->select('city')->groupBy('city')->get();
+        $institutions = DB::table('students')->select('institution')->groupBy('institution')->get();
+        $students = Student::where('city', 'LIKE', '%' . $request->city . '%')
+                            ->where('study_begin', 'LIKE', '%' . $request->year . '%')
+                            ->where('institution', 'LIKE', '%' . $request->institution . '%')
+                            ->orderBy('name')->get();   
+                         
+
+        return view('student.report')->with('cities', $cities)
+                                     ->with('institutions', $institutions)
+                                     ->with('students', $students)
+                                     ->with('city', $request->city)
+                                     ->with('year', $request->year)
+                                     ->with('institution', $request->institution);               
     }
 
 

@@ -7,6 +7,8 @@
             <div class="card" style="float: right;">
                 <div class="card-header">
                 	<a href="{{ action('StudentController@create') }}"><i class="fas fa-user-plus"></i></a>
+                	&nbsp;&nbsp;&nbsp 
+                	<a href="{{ action('StudentController@report') }}"><i class="far fa-chart-bar fa-lg"></i></a>
             		<form action="{{ action('StudentController@search') }}" method="POST" style="width: 500px; margin-left: 25%;">
 						@csrf
 						<input type="text" name="search" class="form-control" placeholder="Busca.." >

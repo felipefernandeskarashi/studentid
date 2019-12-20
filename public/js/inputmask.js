@@ -21,5 +21,11 @@
                 $('#study_begin').datepicker('option', 'maxDate', selectedDate);
             }    
         });
+
+        $("#photo").click(function(){
+            $("#hide").css('visibility', 'hidden');
+            $("#photo").css('color', 'black');
+        });
+
     });   
 
