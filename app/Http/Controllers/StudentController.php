@@ -47,7 +47,7 @@ class StudentController extends Controller
 
         $path = $request->photo->store('images');
         
-        Student::create([
+       $student = Student::create([
             'name' => $request->name,
             'rg' => $request->rg, 
             'voter_id' => $request->voter_id,
@@ -64,7 +64,7 @@ class StudentController extends Controller
             'photo' => $path,
         ]);
 
-        return redirect()->action('StudentController@index')->withInput($request->only('name'));
+        return view('student.show')->with('s', $student);
     }
 
     /**
@@ -100,6 +100,7 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {        
+
         
         if($request->photo != null){
             $this->validateData($request);
@@ -199,8 +200,8 @@ class StudentController extends Controller
             'city' => 'required|max:150',
             'period' => 'required|max:30',
             'days' => 'required|max:100',
-            'study_begin' => 'required|data',
-            'study_ends' => 'required|data',
+            'study_begin' => 'required|date',
+            'study_ends' => 'required|date',
         ]);
 
         return $data;

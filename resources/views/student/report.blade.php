@@ -14,7 +14,7 @@
                       <div class="col">                        
                         <label for="cityInput">Cidade</label>
                         <select class="form-control" id="cityInput" name="city">   
-                          <option>Selecione..</option>                       
+                          <option value="">Selecione..</option>                       
                           @foreach ($cities as $c)
                             <option>{{$c->city}}</option>
                           @endforeach
@@ -27,7 +27,7 @@
                       <div class="col">
                         <label for="institutionInput">Instituição</label>
                         <select class="form-control" id="institutionInput" name="institution">
-                          <option>Selecione..</option>
+                          <option value="">Selecione..</option>
                           @foreach ($institutions as $i)
                             <option>{{$i->institution}}</option>
                           @endforeach
@@ -38,11 +38,13 @@
                     <button type="submit" class="btn btn-primary">Gerar Relatório</button>
                   </form>
             	</div>
-                <p> 
-                  Total: {{sizeof($students)}}
-                  Cidade: {{$city}}
-
+                <p style="margin-left: 23%; margin-top: 3%;"> 
+                  <b>Cidade:</b> {{$city}}
+                  <b>Instituição:</b> {{$institution}}
+                  <b>Ano:</b> {{$year}}
+                  <b>Total: </b> {{sizeof($students)}}
                 </p> 
+                
                 <div class="card-body">                  	 
                   <table class="table table-bordered table-hover" style="text-align: center">
                   <tr>
