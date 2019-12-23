@@ -61,6 +61,8 @@ class StudentController extends Controller
             'days' => implode(' ', $request->days),
             'study_begin' => date("Y-m-d", strtotime($request->study_begin)),
             'study_ends' => date("Y-m-d", strtotime($request->study_ends)),
+            'profession' => $request->profession,
+            'enterprise' => $request->enterprise,
             'photo' => $path,
         ]);
 
@@ -126,6 +128,8 @@ class StudentController extends Controller
             'days' => implode(' ', $request->days),
             'study_begin' => date("Y-m-d", strtotime($request->study_begin)),
             'study_ends' => date("Y-m-d", strtotime($request->study_ends)),
+            'profession' => $request->profession,
+            'enterprise' => $request->enterprise,
             'photo' => $path,
         ]);
 
@@ -194,7 +198,7 @@ class StudentController extends Controller
             'voter_id' => 'required|max:30',
             'phone' => 'required|celular_com_ddd|max:30',
             'address' => 'required|max:150',
-            'course' => 'required|max:150',
+            'course' => 'required|ma  x:150',
             'institution' => 'required|max:150',
             'semester' => 'required|numeric',
             'city' => 'required|max:150',
@@ -202,6 +206,8 @@ class StudentController extends Controller
             'days' => 'required|max:100',
             'study_begin' => 'required|date',
             'study_ends' => 'required|date',
+            'profession' => 'max:100',
+            'enterprise' => 'max:100',
         ]);
 
         return $data;

@@ -187,6 +187,13 @@ return [
             'image' => 'O campo foto deve ter uma das seguintes extensões (jpeg, png, bmp, gif, svg, or webp)',
             'max' => 'Tamanho máximo permitido é 5mb.'
         ],
+        'profession' => [
+            'max' => 'O campo profissão esta muito grande',
+        ],
+        'enterprise' => [
+            'max' => 'O campo empresa esta muito grande',
+        ],
+
     ],
 
     /*

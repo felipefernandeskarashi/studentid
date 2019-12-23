@@ -87,6 +87,16 @@
                         @error('study_ends') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
+                        <label><b>Profissão</b></label>
+                        <input type="" name="profession" class="form-control" value="{{ old('profession') }}">
+                        @error('profession') <p style="color: red;">{{ $message }}</p> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label><b>Empresa</b></label>
+                        <input type="" name="enterprise" class="form-control" value="{{ old('enterprise') }}">
+                        @error('enterprise') <p style="color: red;">{{ $message }}</p> @enderror
+                    </div>
+                    <div class="form-group">
                         <label><b>Foto</b></label>
                         <input type="file" name="photo" class="input-group" value="{{ old('photo') }}">
                         @error('photo') <p style="color: red;">{{ $message }}</p> @enderror

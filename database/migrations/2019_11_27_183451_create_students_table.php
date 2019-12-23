@@ -28,6 +28,8 @@ class CreateStudentsTable extends Migration
             $table->string('days', 100);
             $table->date('study_begin');
             $table->date('study_ends');
+            $table->string('profession', 100)->nullable();
+            $table->string('enterprise', 100)->nullable();
             $table->binary('photo');
             $table->timestamps();
         });
