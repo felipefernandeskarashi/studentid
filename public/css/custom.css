@@ -1,0 +1,35 @@
+
+#card{
+	width: 25rem;
+	margin-left: 35%;
+    margin-top: 10%;
+    background-color: aliceblue;
+}
+
+#cardphoto{
+	height: 90px;
+    width: 90px;
+    margin-top: 60px;
+}
+
+#cardcity{
+	text-align: center;
+	color: royalblue;
+}
+
+#cardtitle{
+	color: royalblue;
+    text-align: center;
+}
+
+#cardobg{
+	background-color: powderblue;
+
+}
+
+#cardbody{
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position-y: 15px;
+    background-position-x: 17px;
+}

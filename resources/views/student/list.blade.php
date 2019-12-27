@@ -38,7 +38,7 @@
 						<td> {{$s->days}} </td>
 						<td><a href="{{ action('StudentController@show', $s->id) }}"><i class="fas fa-search"></i></a></td>
 						<td><a href="{{ action('StudentController@destroy', $s->id) }}"  onClick="remove()"><i class="fas fa-trash"></i></a></td>
-						<td><a href="#"><i class="fas fa-id-card"></i></a></td>
+						<td><a href="{{ action('StudentController@getIdCard', $s->id) }}"><i class="fas fa-id-card"></i></a></td>
 					</tr>
 				    @endforeach
 				</table>

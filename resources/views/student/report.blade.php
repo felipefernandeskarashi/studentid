@@ -8,7 +8,7 @@
                 <div class="card-header">
                 	<a href="{{ action('StudentController@index') }}"><i class="far fa-list-alt" title="Lista"></i></a>
                   <br><br>
-                  <form action="{{ action('StudentController@report') }}" method="POST">
+                  <form action="{{ action('StudentController@report') }}" method="POST" name="formReport">
                     @csrf
                     <div class="form-row">
                       <div class="col">                        
@@ -35,7 +35,8 @@
                       </div>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary">Gerar Relatório</button>
+                    <button type="submit" class="btn btn-primary" id="report" onclick="btn1()">Gerar Relatório</button>
+                    <button type="submit" class="btn btn-success" id="pdf" onclick="btn2()">Gerar PDF</button>                    
                   </form>
             	</div>
                 <p style="margin-left: 23%; margin-top: 3%;"> 
@@ -73,3 +74,18 @@
     </div>
 </div>
 @endsection
+
+<script type="text/javascript">
+  function btn1()
+  {
+    document.formReport.action="{{ action('StudentController@report') }}";
+    document.forms.formReport.submit();
+  }
+  function btn2()
+  {
+    document.formReport.action="{{ action('StudentController@reportPDF') }}";
+    document.forms.formReport.submit();
+  }
+
+
+</script>

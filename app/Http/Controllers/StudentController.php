@@ -18,7 +18,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::paginate(15);         
+        $students = Student::orderBy('name', 'asc')->paginate(15);         
 
         return view('student.list')->with('students', $students);
     }
@@ -79,6 +79,18 @@ class StudentController extends Controller
     {
 
         return view('student.show')->with('s', $student);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Student  $student
+     * @return \Illuminate\Http\Response
+     */
+    public function showPDF(Student $student)
+    {
+
+        return \PDF::loadView('student.showpdf', compact('student'))->stream();
     }
 
     /**
@@ -223,7 +235,7 @@ class StudentController extends Controller
     }
 
 
-        /**
+    /**
      * Search the specified resource from storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -231,14 +243,10 @@ class StudentController extends Controller
      */
     public function report(Request $request)
     {
-          
-
+  
         $cities = DB::table('students')->select('city')->groupBy('city')->get();
         $institutions = DB::table('students')->select('institution')->groupBy('institution')->get();
-        $students = Student::where('city', 'LIKE', '%' . $request->city . '%')
-                            ->where('study_begin', 'LIKE', '%' . $request->year . '%')
-                            ->where('institution', 'LIKE', '%' . $request->institution . '%')
-                            ->orderBy('name')->get();   
+        $students = $this->getStudentsReport($request); 
                          
 
         return view('student.report')->with('cities', $cities)
@@ -247,6 +255,55 @@ class StudentController extends Controller
                                      ->with('city', $request->city)
                                      ->with('year', $request->year)
                                      ->with('institution', $request->institution);               
+    }
+
+    /**
+     * Search the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function reportPDF(Request $request)
+    {
+  
+        $city = $request->city;
+        $institution = $request->institution;
+        $year = $request->year;
+        $students = $this->getStudentsReport($request);  
+                         
+       return \PDF::loadView('student.reportpdf', compact('city', 'institution', 'year', 'students'))
+       ->stream();
+                
+    }
+
+    /**
+     * Search the students from storage to the report.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getStudentsReport(Request $request)
+    {
+  
+        $students = Student::where('city', 'LIKE', '%' . $request->city . '%')
+                            ->where('study_begin', 'LIKE', '%' . $request->year . '%')
+                            ->where('institution', 'LIKE', '%' . $request->institution . '%')
+                            ->orderBy('name')->get();   
+                         
+        return $students;             
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Student  $student
+     * @return \Illuminate\Http\Response
+     */
+    public function getIdCard(Student $student)
+    {
+
+        return view('student.idcard')->with('s', $student);
     }
 
 

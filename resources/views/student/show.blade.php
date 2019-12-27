@@ -7,7 +7,9 @@
             <div class="card">
                 <div class="card-header">
                 	<a href="{{ action('StudentController@index') }}"><i class="far fa-list-alt" title="Lista"></i></a> &nbsp;&nbsp;&nbsp  
-                	<a href="{{ action('StudentController@edit', $s->id) }}"><i class="fas fa-pencil-alt" title="Editar"></i> </a>             	
+                	<a href="{{ action('StudentController@edit', $s->id) }}"><i class="fas fa-pencil-alt" title="Editar"></i> </a>&nbsp;&nbsp;&nbsp 
+                  <a href="{{ action('StudentController@showPDF', $s->id) }}"><i class="far fa-file-pdf" title="Gerar PDF"></i></a>&nbsp;&nbsp;&nbsp   
+                  <a href="{{ action('StudentController@getIdCard', $s->id) }}"><i class="fas fa-id-card"></i></a>           	
             	</div>
 
                 <div class="card-body">                  	 

@@ -82,7 +82,7 @@
 
 
             <div class="content">
-                <img alt="logo prefeitura" src="/brasao.png" width="200px" height="200px" />
+                <img alt="logo prefeitura" src="{{asset('/brasao.png')}}" width="200px" height="200px" />
                 <div class="title m-b-md">
                     Carteirinha de Estudantes
                 </div>
