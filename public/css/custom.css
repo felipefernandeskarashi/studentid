@@ -3,7 +3,10 @@
 	width: 25rem;
 	margin-left: 35%;
     margin-top: 10%;
-    background-color: aliceblue;
+    background-color: white;
+    width: 450px;
+    height: 250px;
+    border: solid;
 }
 
 #cardphoto{
