@@ -60,6 +60,9 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Criar Usuário') }}</a>
                                 </li>
                             @endif
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('password.request') }}">{{ __('Alterar senha') }}</a>
+                                </li>
                             
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
