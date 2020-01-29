@@ -87,12 +87,12 @@
                         @error('days') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
-                        <label><b>Inicio do curso</b></label>
+                        <label><b>Inicio do Semestre</b></label>
                         <input type="text" name="study_begin" class="input-group" value="{{ $s->study_begin->format('d/m/Y') ?? old('study_begin') }}" autocomplete="off" id="study_begin">
                         @error('study_begin') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
-                        <label><b>Fim do curso</b></label>
+                        <label><b>Fim do Semestre</b></label>
                         <input type="text" name="study_ends" class="input-group" value="{{ $s->study_ends->format('d/m/Y') ?? old('study_ends') }}" autocomplete="off" id="study_ends">
                         @error('study_ends') <p style="color: red;">{{ $message }}</p> @enderror
                     </div>

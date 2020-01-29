@@ -19,7 +19,7 @@
 				<table class="table table-bordered table-hover" style="text-align: center">
 				<tr>
 			      <th scope="col">Nome</th>
-			      <th scope="col">Curso</th>
+			      <th scope="col">Instituição</th>
 			      <th scope="col">RG</th>
 			      <th scope="col">Celular</th>
 			      <th scope="col">Data de Inicio</th>
@@ -31,7 +31,7 @@
 					@foreach ($students as $s)
 					<tr>
 						<td >{{$s->name}} </td>
-						<td> {{$s->course}} </td>
+						<td> {{$s->institution}} </td>
 						<td> {{$s->rg}} </td>
 						<td> {{$s->phone}} </td>
 						<td> {{$s->study_begin->format('d/m/Y')}} </td>
