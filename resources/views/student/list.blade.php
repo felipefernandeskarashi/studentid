@@ -29,7 +29,7 @@
 			      <th scope="col">Carteirinha</th>
 			    </tr>
 					@foreach ($students as $s)
-					<tr>
+					<tr class="{{ $s->study_ends < date('Y-m-d') ? 'table-danger' : ''}}">
 						<td >{{$s->name}} </td>
 						<td> {{$s->institution}} </td>
 						<td> {{$s->rg}} </td>
