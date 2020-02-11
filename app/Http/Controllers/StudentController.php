@@ -260,6 +260,7 @@ class StudentController extends Controller
                                      ->with('students', $students)
                                      ->with('city', $request->city)
                                      ->with('year', $request->year)
+                                     ->with('semester', $request->semester)
                                      ->with('institution', $request->institution);               
     }
 
@@ -275,9 +276,10 @@ class StudentController extends Controller
         $city = $request->city;
         $institution = $request->institution;
         $year = $request->year;
+        $semester = $request->semester;
         $students = $this->getStudentsReport($request);  
                          
-       return \PDF::loadView('student.reportpdf', compact('city', 'institution', 'year', 'students'))
+       return \PDF::loadView('student.reportpdf', compact('city', 'institution', 'year', 'students', 'semester'))
        ->stream();
                 
     }
@@ -290,11 +292,32 @@ class StudentController extends Controller
      */
     public function getStudentsReport(Request $request)
     {
-  
-        $students = Student::where('city', 'LIKE', '%' . $request->city . '%')
-                            ->where('study_begin', 'LIKE', '%' . $request->year . '%')
-                            ->where('institution', 'LIKE', '%' . $request->institution . '%')
-                            ->orderBy('name')->get();   
+    
+        if($request->semester == "1")
+        {
+            $students = Student::where('city', 'LIKE', '%' . $request->city . '%')
+                                ->where('study_begin', 'LIKE', '%' . $request->year . '%')
+                                ->whereMonth('study_begin', '>=',  '1')
+                                ->whereMonth('study_ends', '<=',  '8')
+                                ->where('institution', 'LIKE', '%' . $request->institution . '%')
+                                ->orderBy('name')->get();   
+        }
+        elseif($request->semester == "")
+        {
+
+            $students = Student::where('city', 'LIKE', '%' . $request->city . '%')
+                                ->where('study_begin', 'LIKE', '%' . $request->year . '%')
+                                ->where('institution', 'LIKE', '%' . $request->institution . '%')
+                                ->orderBy('name')->get(); 
+        }
+        else
+        {
+            $students = Student::where('city', 'LIKE', '%' . $request->city . '%')
+                                ->where('study_begin', 'LIKE', '%' . $request->year . '%')
+                                ->whereMonth('study_begin', '>=',  '7')
+                                ->where('institution', 'LIKE', '%' . $request->institution . '%')
+                                ->orderBy('name')->get(); 
+        }
                          
         return $students;             
     }

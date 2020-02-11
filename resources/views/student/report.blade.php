@@ -24,6 +24,14 @@
                         <label for="yearInput">Ano</label>
                         <input type="number" min="2000" name="year" class="form-control" id="yearInput">
                       </div>
+                      <div class="col">                        
+                        <label for="semesterInput">Semestre</label>
+                        <select class="form-control" id="semesterInput" name="semester">   
+                          <option value="">Selecione..</option>                       
+                          <option value="1">1° Semestre</option>
+                          <option value="7">2° Semestre</option>
+                        </select> 
+                      </div>
                       <div class="col">
                         <label for="institutionInput">Instituição</label>
                         <select class="form-control" id="institutionInput" name="institution">
@@ -39,10 +47,11 @@
                     <button type="submit" class="btn btn-success" id="pdf" onclick="btn2()">Gerar PDF</button>                    
                   </form>
             	</div>
-                <p style="margin-left: 23%; margin-top: 3%;"> 
+                <p style="margin-left: 20%; margin-top: 3%;"> 
                   <b>Cidade:</b> {{$city}}
                   <b>Instituição:</b> {{$institution}}
                   <b>Ano:</b> {{$year}}
+                  <b>Semestre:</b> {{$semester}}
                   <b>Total: </b> {{sizeof($students)}}
                 </p> 
                 
@@ -76,6 +85,7 @@
 @endsection
 
 <script type="text/javascript">
+
   function btn1()
   {
     document.formReport.action="{{ action('StudentController@report') }}";
@@ -86,6 +96,5 @@
     document.formReport.action="{{ action('StudentController@reportPDF') }}";
     document.forms.formReport.submit();
   }
-
-
+  
 </script>

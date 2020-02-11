@@ -1,9 +1,10 @@
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-<p style="margin-left: 23%; margin-top: 3%;"> 
+<p style="margin-left: 20%; margin-top: 3%;"> 
 	<b>Cidade:</b> {{$city}}
 	<b>Instituição:</b> {{$institution}}
 	<b>Ano:</b> {{$year}}
+	<b>Semestre:</b> {{$semester}}
 	<b>Total: </b> {{sizeof($students)}}
 </p> 
 
