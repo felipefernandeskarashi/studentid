@@ -29,7 +29,7 @@
                         <select class="form-control" id="semesterInput" name="semester">   
                           <option value="">Selecione..</option>                       
                           <option value="1">1° Semestre</option>
-                          <option value="7">2° Semestre</option>
+                          <option value="2">2° Semestre</option>
                         </select> 
                       </div>
                       <div class="col">
@@ -96,5 +96,5 @@
     document.formReport.action="{{ action('StudentController@reportPDF') }}";
     document.forms.formReport.submit();
   }
-  
+
 </script>
