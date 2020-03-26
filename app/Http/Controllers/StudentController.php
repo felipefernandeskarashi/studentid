@@ -125,6 +125,7 @@ class StudentController extends Controller
         if($request->photo != null){
             $this->validateData($request);
             $this->validatePhoto($request);
+            Storage::delete($student->photo);
             $path = $request->photo->store('images');
         }
         else{
